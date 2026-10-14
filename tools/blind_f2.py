@@ -10,11 +10,12 @@ public model checks and a solve, and records what is actually observed.
 """
 
 from __future__ import annotations
+from pathlib import Path
 
 import json
 import sys
 
-sys.path.insert(0, r"<项目根>")
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import numpy as np
 

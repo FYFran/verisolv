@@ -8,6 +8,7 @@ Finding 2: optimize.py's verdict=verified covers numerical self-consistency but
 Both are serious enough to change what the submission may claim, so neither is
 accepted on the auditor's word alone.
 """
+from pathlib import Path
 
 import io
 import sys
@@ -15,7 +16,7 @@ import sys
 import numpy as np
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
-sys.path.insert(0, r"<项目根>")
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from verisolv.cases import _cantilever  # noqa: E402
 from verisolv.checkmodel import check_model  # noqa: E402

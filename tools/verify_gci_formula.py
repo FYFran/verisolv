@@ -17,6 +17,7 @@ So the correct observed order from coarse->fine samples is
     p = -ln(|f3-f2| / |f2-f1|) / ln(r)
 and any implementation that returns +p from the un-inverted ratio is wrong.
 """
+from pathlib import Path
 
 import io
 import sys
@@ -24,7 +25,7 @@ import sys
 import numpy as np
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
-sys.path.insert(0, r"<项目根>")
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from verisolv.gci import compute_gci  # noqa: E402
 

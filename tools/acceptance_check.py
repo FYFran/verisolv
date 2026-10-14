@@ -1,7 +1,8 @@
 """Self-check for acceptance items #1, #2, #3: independently re-run the three
 cases the team leader will hand-check, using ONLY the fixed code."""
+from pathlib import Path
 import sys
-sys.path.insert(0, r"<项目根>")
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from verisolv.cases import _cantilever
 from verisolv.checkmodel import check_model
 

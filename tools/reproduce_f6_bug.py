@@ -7,6 +7,7 @@ blind in exactly the regime it was written for.
 
 I did not write this by trusting the report. I am reproducing it from scratch.
 """
+from pathlib import Path
 
 import io
 import sys
@@ -14,7 +15,7 @@ import sys
 import numpy as np
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
-sys.path.insert(0, r"<项目根>")
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from verisolv.checkmodel import check_model  # noqa: E402
 from verisolv.cases import _cantilever  # noqa: E402

@@ -9,6 +9,7 @@ Criteria:
   2. a nominal load MUST still pass                (it must not become an alarm)
   3. a mechanism MUST NOT crash check_model        (singular solve must be caught)
 """
+from pathlib import Path
 
 import io
 import sys
@@ -16,7 +17,7 @@ import sys
 import numpy as np
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
-sys.path.insert(0, r"<项目根>")
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from verisolv.cases import _cantilever  # noqa: E402
 from verisolv.checkmodel import check_model  # noqa: E402

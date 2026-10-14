@@ -29,6 +29,7 @@ independent check that constructs known-order sequences by hand and does not
 share the gate's formula), and this script now reproduces the corrected
 gate: 40/80/160 -> reject (non-positive p).
 """
+from pathlib import Path
 
 import io
 import sys
@@ -36,7 +37,7 @@ import sys
 import numpy as np
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
-sys.path.insert(0, r"<项目根>")
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from verisolv.models import von_mises_truss  # noqa: E402
 from verisolv.solver import SolverOptions, solve  # noqa: E402

@@ -9,6 +9,7 @@ check_model's value is that it never runs the solver, so the replacement has to 
 solve-free too. This compares candidate cheap estimators against the real
 first-order displacement, so the choice is made on measurement rather than taste.
 """
+from pathlib import Path
 
 import io
 import sys
@@ -16,7 +17,7 @@ import sys
 import numpy as np
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
-sys.path.insert(0, r"<项目根>")
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from verisolv.cases import _cantilever  # noqa: E402
 from verisolv.fem import assemble  # noqa: E402

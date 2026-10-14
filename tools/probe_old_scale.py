@@ -7,8 +7,9 @@ touching the current code. Mirrors the pre-fix formula exactly:
     estimated = load / stiffness_scale
     FAIL when span > 0 and estimated > 0.1 * span
 """
+from pathlib import Path
 import sys
-sys.path.insert(0, r"<项目根>")
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import numpy as np
 from verisolv.cases import _cantilever
 

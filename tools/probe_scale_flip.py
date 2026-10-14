@@ -4,8 +4,9 @@ to enumerate exactly which case model_check_verdict entries changed.
 OLD = the pre-fix formula (sum E*A/L), mirrored here verbatim.
 NEW = the fixed checkmodel.
 """
+from pathlib import Path
 import sys
-sys.path.insert(0, r"<项目根>")
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import numpy as np
 from verisolv.cases import build_cases
 from verisolv.checkmodel import check_model as _new_check_model

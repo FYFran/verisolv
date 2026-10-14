@@ -1,5 +1,6 @@
+from pathlib import Path
 import sys
-sys.path.insert(0, r"<项目根>")
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import numpy as np
 from verisolv.cases import _cantilever
 from verisolv.checkmodel import check_scale_consistency
