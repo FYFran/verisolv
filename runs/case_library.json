@@ -1,0 +1,571 @@
+{
+  "cases": [
+    {
+      "name": "A01_limit_point_baseline",
+      "layer": "solver",
+      "root_cause": "limit_point",
+      "observed": "limit_point",
+      "converged": false,
+      "verdict": null,
+      "diagnosis": "limit_point",
+      "diagnosis_summary": "the residual stopped decreasing without growing: the iteration is pressed against a limit point of the equilibrium path, where the tangent stiffness becomes singular and no load increment can make progress",
+      "repair_helped": true,
+      "matched": true,
+      "detectable_by": "verification",
+      "test_class": "failure",
+      "model_check_verdict": "ok",
+      "model_check_findings": [],
+      "caught_by": [
+        "diagnoser"
+      ],
+      "as_expected": true,
+      "solver_failure": "max_iterations",
+      "accepted_increments": 3,
+      "rejected_increments": 1,
+      "repair_strategy": "displacement_control",
+      "repair_should_help": true
+    },
+    {
+      "name": "A02_limit_point_shallower",
+      "layer": "solver",
+      "root_cause": "limit_point",
+      "observed": "converged_unverified",
+      "converged": true,
+      "verdict": "suspect",
+      "diagnosis": "branch_jump",
+      "diagnosis_summary": "converged but verification verdict is suspect",
+      "repair_helped": null,
+      "matched": true,
+      "detectable_by": "verification",
+      "test_class": "failure",
+      "model_check_verdict": "ok",
+      "model_check_findings": [],
+      "caught_by": [
+        "diagnoser",
+        "verification"
+      ],
+      "as_expected": true,
+      "checks_failed": [
+        "path_continuity",
+        "step_refinement"
+      ]
+    },
+    {
+      "name": "A03_limit_point_fine_steps",
+      "layer": "solver",
+      "root_cause": "limit_point",
+      "observed": "limit_point",
+      "converged": false,
+      "verdict": null,
+      "diagnosis": "limit_point",
+      "diagnosis_summary": "the residual stopped decreasing without growing: the iteration is pressed against a limit point of the equilibrium path, where the tangent stiffness becomes singular and no load increment can make progress",
+      "repair_helped": true,
+      "matched": true,
+      "detectable_by": "verification",
+      "test_class": "failure",
+      "model_check_verdict": "ok",
+      "model_check_findings": [],
+      "caught_by": [
+        "diagnoser"
+      ],
+      "as_expected": true,
+      "solver_failure": "max_iterations",
+      "accepted_increments": 15,
+      "rejected_increments": 1,
+      "repair_strategy": "displacement_control",
+      "repair_should_help": true
+    },
+    {
+      "name": "A04_tiny_load_regression",
+      "layer": "solver",
+      "root_cause": "converged_verified",
+      "observed": "converged_verified",
+      "converged": true,
+      "verdict": "verified",
+      "diagnosis": null,
+      "diagnosis_summary": "converged and verified",
+      "repair_helped": null,
+      "matched": true,
+      "detectable_by": "none_expected",
+      "test_class": "normal",
+      "model_check_verdict": "ok",
+      "model_check_findings": [],
+      "caught_by": [],
+      "as_expected": true,
+      "checks_failed": []
+    },
+    {
+      "name": "A05_tinier_load_regression",
+      "layer": "solver",
+      "root_cause": "converged_verified",
+      "observed": "converged_verified",
+      "converged": true,
+      "verdict": "verified",
+      "diagnosis": null,
+      "diagnosis_summary": "converged and verified",
+      "repair_helped": null,
+      "matched": true,
+      "detectable_by": "none_expected",
+      "test_class": "normal",
+      "model_check_verdict": "ok",
+      "model_check_findings": [],
+      "caught_by": [],
+      "as_expected": true,
+      "checks_failed": []
+    },
+    {
+      "name": "A06_divergence_single_step",
+      "layer": "solver",
+      "root_cause": "divergence",
+      "observed": "divergence",
+      "converged": false,
+      "verdict": null,
+      "diagnosis": "divergence",
+      "diagnosis_summary": "the residual grew instead of settling; the increment is too large for this state",
+      "repair_helped": true,
+      "matched": true,
+      "detectable_by": "diagnoser",
+      "test_class": "failure",
+      "model_check_verdict": "ok",
+      "model_check_findings": [],
+      "caught_by": [
+        "diagnoser"
+      ],
+      "as_expected": true,
+      "solver_failure": "max_iterations",
+      "accepted_increments": 0,
+      "rejected_increments": 1,
+      "repair_strategy": "displacement_control",
+      "repair_should_help": true
+    },
+    {
+      "name": "A07_singular_mechanism_zero_load",
+      "layer": "modelling",
+      "root_cause": "missing_restraint_mechanism",
+      "observed": "rigid_body_mechanism",
+      "converged": false,
+      "verdict": null,
+      "diagnosis": "rigid_body_mechanism",
+      "diagnosis_summary": "the tangent stiffness is singular before any load is applied, so the structure has a rigid-body mode: it is a mechanism, not a structure. No change of increment size or control variable can fix this; a restraint is missing or the model is otherwise under-constrained",
+      "repair_helped": false,
+      "matched": true,
+      "detectable_by": "model_check",
+      "test_class": "failure",
+      "model_check_verdict": "ill_posed",
+      "model_check_findings": [
+        "rigid_body_modes"
+      ],
+      "caught_by": [
+        "diagnoser",
+        "model_check"
+      ],
+      "as_expected": true,
+      "solver_failure": "diverged",
+      "accepted_increments": 0,
+      "rejected_increments": 1,
+      "repair_strategy": null,
+      "repair_should_help": false
+    },
+    {
+      "name": "N01_nominal_cantilever_service_load",
+      "layer": "modelling",
+      "root_cause": "nominal_service_load",
+      "observed": "converged_verified",
+      "converged": true,
+      "verdict": "verified",
+      "diagnosis": null,
+      "diagnosis_summary": "converged and verified",
+      "repair_helped": null,
+      "matched": true,
+      "detectable_by": "none_expected",
+      "test_class": "normal",
+      "model_check_verdict": "ok",
+      "model_check_findings": [],
+      "caught_by": [],
+      "as_expected": true,
+      "checks_failed": []
+    },
+    {
+      "name": "N02_nominal_arch_below_limit",
+      "layer": "modelling",
+      "root_cause": "nominal_load_below_limit",
+      "observed": "converged_verified",
+      "converged": true,
+      "verdict": "verified",
+      "diagnosis": null,
+      "diagnosis_summary": "converged and verified",
+      "repair_helped": null,
+      "matched": true,
+      "detectable_by": "none_expected",
+      "test_class": "normal",
+      "model_check_verdict": "ok",
+      "model_check_findings": [],
+      "caught_by": [],
+      "as_expected": true,
+      "checks_failed": []
+    },
+    {
+      "name": "E01_boundary_load_exactly_at_limit",
+      "layer": "modelling",
+      "root_cause": "load_exactly_at_limit_point",
+      "observed": "limit_point",
+      "converged": false,
+      "verdict": null,
+      "diagnosis": "limit_point",
+      "diagnosis_summary": "the residual stopped decreasing without growing: the iteration is pressed against a limit point of the equilibrium path, where the tangent stiffness becomes singular and no load increment can make progress",
+      "repair_helped": true,
+      "matched": true,
+      "detectable_by": "verification",
+      "test_class": "boundary",
+      "model_check_verdict": "ok",
+      "model_check_findings": [],
+      "caught_by": [
+        "diagnoser"
+      ],
+      "as_expected": true,
+      "solver_failure": "max_iterations",
+      "accepted_increments": 0,
+      "rejected_increments": 1,
+      "repair_strategy": "displacement_control",
+      "repair_should_help": true
+    },
+    {
+      "name": "E02_boundary_zero_load",
+      "layer": "modelling",
+      "root_cause": "degenerate_zero_load",
+      "observed": "converged_verified",
+      "converged": true,
+      "verdict": "verified",
+      "diagnosis": null,
+      "diagnosis_summary": "converged and verified",
+      "repair_helped": null,
+      "matched": true,
+      "detectable_by": "none_expected",
+      "test_class": "boundary",
+      "model_check_verdict": "ok",
+      "model_check_findings": [],
+      "caught_by": [],
+      "as_expected": true,
+      "checks_failed": []
+    },
+    {
+      "name": "E00_boundary_just_below_limit",
+      "layer": "modelling",
+      "root_cause": "load_just_below_limit_point",
+      "observed": "converged_verified",
+      "converged": true,
+      "verdict": "verified",
+      "diagnosis": null,
+      "diagnosis_summary": "converged and verified",
+      "repair_helped": null,
+      "matched": true,
+      "detectable_by": "none_expected",
+      "test_class": "boundary",
+      "model_check_verdict": "ok",
+      "model_check_findings": [],
+      "caught_by": [],
+      "as_expected": true,
+      "checks_failed": []
+    },
+    {
+      "name": "E03_boundary_just_above_limit",
+      "layer": "modelling",
+      "root_cause": "load_just_above_limit_point",
+      "observed": "converged_unverified",
+      "converged": true,
+      "verdict": "suspect",
+      "diagnosis": "branch_jump",
+      "diagnosis_summary": "converged but verification verdict is suspect",
+      "repair_helped": null,
+      "matched": true,
+      "detectable_by": "diagnoser",
+      "test_class": "boundary",
+      "model_check_verdict": "ok",
+      "model_check_findings": [],
+      "caught_by": [
+        "diagnoser",
+        "verification"
+      ],
+      "as_expected": true,
+      "checks_failed": [
+        "path_continuity"
+      ]
+    },
+    {
+      "name": "R01_reference_apex_force_at_0.02m",
+      "layer": "solver",
+      "root_cause": "analytical_agreement",
+      "observed": "converged_verified",
+      "converged": true,
+      "verdict": "verified",
+      "diagnosis": null,
+      "diagnosis_summary": "converged and verified",
+      "repair_helped": null,
+      "matched": true,
+      "detectable_by": "none_expected",
+      "test_class": "normal",
+      "model_check_verdict": "ok",
+      "model_check_findings": [],
+      "caught_by": [],
+      "as_expected": true,
+      "checks_failed": [],
+      "analytical": {
+        "quantity": "apex force [N]",
+        "computed": 5958.4009172178385,
+        "closed_form": 5958.400917217835,
+        "relative_error": 6.105629442589438e-16,
+        "tolerance": 1e-09,
+        "passed": true
+      }
+    },
+    {
+      "name": "R02_reference_apex_force_at_0.08m",
+      "layer": "solver",
+      "root_cause": "analytical_agreement",
+      "observed": "converged_verified",
+      "converged": true,
+      "verdict": "verified",
+      "diagnosis": null,
+      "diagnosis_summary": "converged and verified",
+      "repair_helped": null,
+      "matched": true,
+      "detectable_by": "none_expected",
+      "test_class": "normal",
+      "model_check_verdict": "ok",
+      "model_check_findings": [],
+      "caught_by": [],
+      "as_expected": true,
+      "checks_failed": [],
+      "analytical": {
+        "quantity": "apex force [N]",
+        "computed": 3972.2672781452266,
+        "closed_form": 3972.2672781452247,
+        "relative_error": 4.579222081942077e-16,
+        "tolerance": 1e-09,
+        "passed": true
+      }
+    },
+    {
+      "name": "R03_reference_apex_force_at_0.15m",
+      "layer": "solver",
+      "root_cause": "analytical_agreement",
+      "observed": "converged_verified",
+      "converged": true,
+      "verdict": "verified",
+      "diagnosis": null,
+      "diagnosis_summary": "converged and verified",
+      "repair_helped": null,
+      "matched": true,
+      "detectable_by": "none_expected",
+      "test_class": "normal",
+      "model_check_verdict": "ok",
+      "model_check_findings": [],
+      "caught_by": [],
+      "as_expected": true,
+      "checks_failed": [],
+      "analytical": {
+        "quantity": "apex force [N]",
+        "computed": -7758.334527627393,
+        "closed_form": -7758.334527627391,
+        "relative_error": 2.344561705954344e-16,
+        "tolerance": 1e-09,
+        "passed": true
+      }
+    },
+    {
+      "name": "B01_load_direction_reversed",
+      "layer": "modelling",
+      "root_cause": "load_direction_reversed",
+      "observed": "converged_verified",
+      "converged": true,
+      "verdict": "verified",
+      "diagnosis": null,
+      "diagnosis_summary": "converged and verified",
+      "repair_helped": null,
+      "matched": true,
+      "detectable_by": "intent_only",
+      "test_class": "failure",
+      "model_check_verdict": "ok",
+      "model_check_findings": [],
+      "caught_by": [],
+      "as_expected": true,
+      "checks_failed": []
+    },
+    {
+      "name": "B02_unit_slip_load_x1000",
+      "layer": "modelling",
+      "root_cause": "unit_slip_load_x1000",
+      "observed": "converged_unverified",
+      "converged": true,
+      "verdict": "suspect",
+      "diagnosis": "branch_jump",
+      "diagnosis_summary": "converged but verification verdict is suspect",
+      "repair_helped": null,
+      "matched": true,
+      "detectable_by": "intent_only",
+      "test_class": "failure",
+      "model_check_verdict": "suspicious",
+      "model_check_findings": [
+        "scale_consistency"
+      ],
+      "caught_by": [
+        "diagnoser",
+        "verification",
+        "model_check"
+      ],
+      "as_expected": false,
+      "checks_failed": [
+        "path_continuity"
+      ]
+    },
+    {
+      "name": "B03_material_typo_E_x1000",
+      "layer": "modelling",
+      "root_cause": "material_typo_E_x1000",
+      "observed": "converged_verified",
+      "converged": true,
+      "verdict": "verified",
+      "diagnosis": null,
+      "diagnosis_summary": "converged and verified",
+      "repair_helped": null,
+      "matched": true,
+      "detectable_by": "model_check",
+      "test_class": "failure",
+      "model_check_verdict": "suspicious",
+      "model_check_findings": [
+        "material_plausibility"
+      ],
+      "caught_by": [
+        "model_check"
+      ],
+      "as_expected": true,
+      "checks_failed": []
+    },
+    {
+      "name": "B04_missing_x_restraint",
+      "layer": "modelling",
+      "root_cause": "missing_x_restraint",
+      "observed": "rigid_body_mechanism",
+      "converged": false,
+      "verdict": null,
+      "diagnosis": "rigid_body_mechanism",
+      "diagnosis_summary": "the tangent stiffness is singular before any load is applied, so the structure has a rigid-body mode: it is a mechanism, not a structure. No change of increment size or control variable can fix this; a restraint is missing or the model is otherwise under-constrained",
+      "repair_helped": false,
+      "matched": true,
+      "detectable_by": "model_check",
+      "test_class": "failure",
+      "model_check_verdict": "ill_posed",
+      "model_check_findings": [
+        "degrees_of_freedom",
+        "rigid_body_modes"
+      ],
+      "caught_by": [
+        "diagnoser",
+        "model_check"
+      ],
+      "as_expected": true,
+      "solver_failure": "step_exhausted",
+      "accepted_increments": 0,
+      "rejected_increments": 13,
+      "repair_strategy": null,
+      "repair_should_help": false
+    }
+  ],
+  "confusion": {
+    "limit_point": {
+      "limit_point": 2,
+      "converged_unverified": 1
+    },
+    "converged_verified": {
+      "converged_verified": 2
+    },
+    "divergence": {
+      "divergence": 1
+    },
+    "missing_restraint_mechanism": {
+      "rigid_body_mechanism": 1
+    },
+    "nominal_service_load": {
+      "converged_verified": 1
+    },
+    "nominal_load_below_limit": {
+      "converged_verified": 1
+    },
+    "load_exactly_at_limit_point": {
+      "limit_point": 1
+    },
+    "degenerate_zero_load": {
+      "converged_verified": 1
+    },
+    "load_just_below_limit_point": {
+      "converged_verified": 1
+    },
+    "load_just_above_limit_point": {
+      "converged_unverified": 1
+    },
+    "analytical_agreement": {
+      "converged_verified": 3
+    },
+    "load_direction_reversed": {
+      "converged_verified": 1
+    },
+    "unit_slip_load_x1000": {
+      "converged_unverified": 1
+    },
+    "material_typo_E_x1000": {
+      "converged_verified": 1
+    },
+    "missing_x_restraint": {
+      "rigid_body_mechanism": 1
+    }
+  },
+  "summary": {
+    "total_cases": 20,
+    "detectable_errors": 9,
+    "detected": 9,
+    "detection_rate": 1.0,
+    "missed": [],
+    "undetectable_by_design": 2,
+    "undetectable_cases": [
+      "B01_load_direction_reversed",
+      "B02_unit_slip_load_x1000"
+    ],
+    "unexpectedly_detected_anyway": [
+      "B02_unit_slip_load_x1000"
+    ],
+    "positive_controls": 9,
+    "controls_clean": 9,
+    "controls_false_alarm": [],
+    "repair_behaviour_correct": 20,
+    "repair_mismatch": [],
+    "as_expected": 18,
+    "as_expected_of": 18,
+    "by_expected_detector": {
+      "verification": 4,
+      "none_expected": 9,
+      "diagnoser": 2,
+      "model_check": 3,
+      "intent_only": 2
+    },
+    "by_layer": {
+      "solver": {
+        "total": 9,
+        "matched": 9,
+        "repair_rescued": 3
+      },
+      "modelling": {
+        "total": 11,
+        "matched": 11,
+        "repair_rescued": 1
+      }
+    },
+    "observed_label_counts": {
+      "limit_point": 3,
+      "converged_unverified": 3,
+      "converged_verified": 11,
+      "divergence": 1,
+      "rigid_body_mechanism": 2
+    },
+    "legacy_matched": 20
+  }
+}

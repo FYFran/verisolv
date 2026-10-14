@@ -1,0 +1,7 @@
+﻿CE1 E=21 GPa: converged: True | peak path load factor: 0.039684 | verdict: verified
+  residual: passed=True
+  global_equilibrium: passed=True
+  path_continuity: passed=True
+  step_refinement: passed=True
+REF E=210 GPa (default): peak path load factor: 0.396839
+E=21 GPa carries ~ 10.0 x LESS load than E=210 GPa

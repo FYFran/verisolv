@@ -1,0 +1,45 @@
+{
+  "equilibrium_path": {
+    "limit_load_N": 7963.157468532207,
+    "limit_drop_m": 0.042250000000000024,
+    "closed_form_limit_N": 7963.2,
+    "load_control_failed_at_N": 6000.000000000001,
+    "load_control_stalled_residual_N": 46.549792044462265,
+    "branch_jump_m": 0.1781558214183939,
+    "branch_jump_ratio": 1058.5561942591867,
+    "path_points": 120
+  },
+  "optimization": {
+    "baseline_mass_kg": 209.25630585851522,
+    "best_mass_kg": 128.71880205106532,
+    "best_areas": {
+      "bottom": 0.0013383672534457427,
+      "top": 0.0013601856969759829,
+      "vertical": 0.0003401433502815758,
+      "diagonal": 0.0006898482617958449
+    },
+    "mass_reduction_pct": 38.487491919074515,
+    "evaluations": 292,
+    "verified": true,
+    "verdict": "verified",
+    "constraints": {
+      "max_stress_Pa": 150000000.0,
+      "max_stress_measure": "engineering (nominal) stress N/A0",
+      "max_deflection_m": 0.02,
+      "load_factor": 1.0,
+      "buckling_factor": 2.0,
+      "buckling_curve": "Johnson parabola below C_c, Euler above",
+      "k_factor": 1.0,
+      "k_factor_note": "truss joints treated as pinned, so K = 1",
+      "search_margin": 0.98,
+      "shape": "circular_tube",
+      "t_over_D": 0.05
+    },
+    "stress_limit_MPa": 150.0,
+    "deflection_limit_mm": 20.0,
+    "best_max_stress_MPa": 146.99877712816703,
+    "best_max_deflection_mm": 14.425561780683053,
+    "best_min_buckling_ratio": 2.040832856643406,
+    "best_governing_bar": 0
+  }
+}

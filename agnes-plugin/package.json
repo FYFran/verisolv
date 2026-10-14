@@ -1,0 +1,19 @@
+{
+  "name": "@hackathon/verisolv-agnes-plugin",
+  "version": "0.1.0",
+  "type": "module",
+  "license": "Apache-2.0",
+  "description": "Verisolv structural analysis tools for Agnes Harness: solve, verify, diagnose, repair.",
+  "exports": "./index.mjs",
+  "agnes": {
+    "plugins": [
+      {
+        "export": "verisolvPlugin",
+        "id": "ext:hackathon/verisolv-agnes-plugin",
+        "inject": [
+          "extension"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+# --- secrets: never commit these -------------------------------------------
+.env
+.env.*
+*.key
+*.pem
+secrets/
+.secrets/
+credentials*
+*credentials*.json
+
+# --- python ----------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# --- run artefacts ---------------------------------------------------------
+# Keep the small evidence transcripts, drop anything bulky or regenerable.
+runs/*.npz
+runs/*.npy
+runs/*.png
+runs/*.tmp
+runs/tmp/
+*.log
+# ...but the three run transcripts in runs/ are evidence, not build noise.
+!runs/*.log
+
+# --- editors / os ----------------------------------------------------------
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

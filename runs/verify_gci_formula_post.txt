@@ -1,0 +1,48 @@
+﻿==============================================================================
+A. Textbook check: a sequence built to converge at order p
+==============================================================================
+   f = f_exact + C*h^p,  h = 1, 1/2, 1/4  (coarsest first, as the docstring says)
+
+  p_true                       samples (coarse->fine)   reported p        status
+     2.0           105.000000, 101.250000, 100.312500       2.0000          pass
+     1.0           105.000000, 102.500000, 101.250000       1.0000          pass
+     1.5           105.000000, 101.767767, 100.625000       1.5000          pass
+     3.0           105.000000, 100.625000, 100.078125       3.0000          pass
+
+==============================================================================
+B. The same sequences fed FINEST FIRST
+==============================================================================
+  p_true   reported p        status
+     2.0      -2.0000        reject
+     1.0      -1.0000        reject
+     1.5      -1.5000        reject
+     3.0      -3.0000        reject
+
+==============================================================================
+C. The real sequence, and what the increments say
+==============================================================================
+  n=40/80/160 : [7959.445105, 7960.520968, 7963.136754]
+  increment coarse->medium : +1.075863
+  increment medium->fine   : +2.615786
+  increments are GROWING (diverging)
+
+  correct observed order   : -1.2818
+    (negative => the sequence is not converging monotonically at a positive
+     order, so Richardson/GCI DOES NOT APPLY and the correct answer is reject)
+  what the shipped gate reports: p = -1.2818, status = reject, GCI(fine) = n/a (rejected, no GCI reported)
+  detail: the measured order is p = -1.282 (non-positive); the samples do not march monotonically toward a limit, so the Richardson recipe is not usable and no GCI is reported
+
+==============================================================================
+D. Algebraic check of the asymptotic ratio
+==============================================================================
+  claimed identity (legacy, absolute form): asymptotic_ratio == r^(2p)?
+    p=1.0: reported ratio = 1, r^(2p) = 4, legacy r^(2p)-identity = False, corrected-form identity (=1) = True
+    p=2.0: reported ratio = 1, r^(2p) = 16, legacy r^(2p)-identity = False, corrected-form identity (=1) = True
+
+  Interpretation: with the SIGN-INVERTED (pre-fix) order formula the legacy
+  absolute-form ratio equals r^(2p) exactly -- an algebraic identity, so it
+  carries no information beyond p.  With the corrected formula it is
+  identically 1.  Either way it is NOT an independent check, which is why it
+  is no longer used as a gate.  The gate now uses the literature's relative-
+  form consistency ratio GCI_32*r^p/GCI_21 (Celik et al. 2008), which for an
+  observed p reduces to |f1|/|f2| -- a same-magnitude sanity check only.

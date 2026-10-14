@@ -1,0 +1,129 @@
+{
+  "solved": true,
+  "diagnosis": {
+    "kind": "limit_point",
+    "summary": "the residual stopped decreasing without growing: the iteration is pressed against a limit point of the equilibrium path, where the tangent stiffness becomes singular and no load increment can make progress",
+    "evidence": {
+      "failure": "max_iterations",
+      "last_converged_control": 0.30000000000000004,
+      "last_converged_load_factor": 0.30000000000000004,
+      "rejected_increments": 1,
+      "final_residual_history": [
+        "4.0880e+01",
+        "1.0093e+02",
+        "3.9522e+01",
+        "1.5039e+02",
+        "5.0305e+01",
+        "4.6550e+01"
+      ],
+      "residual_first": 2000.0000000206392,
+      "residual_best": 36.89779301281851,
+      "residual_last": 46.549792044462265,
+      "improved_by": 54.203783931625054,
+      "final_over_best": 1.2615874350070366,
+      "limit_point_estimate": {
+        "control_value": 0.30000000000000004,
+        "load_factor": 0.30000000000000004,
+        "max_displacement": 0.02021981327868375,
+        "rejected_after": 1
+      },
+      "residual_stalled": true
+    }
+  },
+  "final": {
+    "converged": true,
+    "control": "displacement",
+    "load_factor": -0.12332596429108514,
+    "control_value": -0.1934,
+    "accepted_steps": 40,
+    "rejected_steps": 0,
+    "failure": null,
+    "message": "reached the target in 40 accepted increments",
+    "max_displacement": 0.1934
+  },
+  "verification": {
+    "verdict": "verified",
+    "checks": [
+      {
+        "name": "residual",
+        "passed": true,
+        "severity": "critical",
+        "detail": "relative residual 0.000e+00 at the reported state (tolerance 1.0e-06)",
+        "evidence": {
+          "abs_residual": 0.0,
+          "rel_residual": 0.0,
+          "tolerance": 1e-06
+        }
+      },
+      {
+        "name": "global_equilibrium",
+        "passed": true,
+        "severity": "major",
+        "detail": "force imbalance 0.000e+00, moment imbalance 0.000e+00",
+        "evidence": {
+          "force_residual": 0.0,
+          "force_relative": 0.0,
+          "moment_residual": 0.0,
+          "moment_relative": 0.0,
+          "reaction_sum": [
+            0.0,
+            -2466.519285821703
+          ],
+          "applied_sum": [
+            0.0,
+            2466.519285821703
+          ],
+          "moment_coordinates": "deformed"
+        }
+      },
+      {
+        "name": "path_continuity",
+        "passed": true,
+        "severity": "major",
+        "detail": "largest increment 4.8350e-03 m vs median 4.8350e-03 m (1.0x) between steps 12 and 13",
+        "evidence": {
+          "max_increment": 0.004835000000000006,
+          "median_increment": 0.004835000000000006,
+          "ratio": 1.0,
+          "jump_factor": 20.0,
+          "jump_between_steps": [
+            12,
+            13
+          ]
+        }
+      },
+      {
+        "name": "step_refinement",
+        "passed": true,
+        "severity": "major",
+        "detail": "refined solution differs by 1.005e-15 (displacement) and 3.050e-14 (load factor)",
+        "evidence": {
+          "refined_steps": 80,
+          "displacement_relative_difference": 1.0045968423443765e-15,
+          "load_factor_relative_difference": 3.049544771481329e-14,
+          "tolerance": 0.0001
+        }
+      }
+    ]
+  },
+  "claim_level": "engineering",
+  "attempts": [
+    {
+      "strategy": "displacement_control",
+      "rationale": "prescribe the displacement component with the largest linear response and treat the load factor as an unknown; this is the only strategy that can pass a limit point",
+      "accepted": true,
+      "result": {
+        "converged": true,
+        "control": "displacement",
+        "load_factor": -0.12332596429108514,
+        "control_value": -0.1934,
+        "accepted_steps": 40,
+        "rejected_steps": 0,
+        "failure": null,
+        "message": "reached the target in 40 accepted increments",
+        "max_displacement": 0.1934
+      },
+      "verdict": "verified"
+    }
+  ]
+}

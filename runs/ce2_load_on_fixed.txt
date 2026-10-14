@@ -1,0 +1,8 @@
+﻿CE2 load-on-fixed-node: converged: True
+  max displacement: 0.0
+  load_factor: 0.9999999999999999
+CE2 verdict: verified
+  residual: passed=True
+  global_equilibrium: passed=True
+  path_continuity: passed=True
+  step_refinement: passed=True
